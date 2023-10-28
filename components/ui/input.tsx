@@ -1,7 +1,7 @@
 interface InputProps {
   disabled?: boolean;
   isRound?: boolean;
-  onChange: () => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   type?: string;
   value: string;
@@ -32,3 +32,5 @@ const Input: React.FC<InputProps> = ({ disabled, isRound, onChange, type, placeh
     />
   );
 };
+
+export default Input;

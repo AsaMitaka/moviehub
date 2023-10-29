@@ -4,8 +4,8 @@ import HeaderLogo from './headerLogo';
 const Header = () => {
   const items = [
     {
-      label: 'Films',
-      href: '/',
+      label: 'movies',
+      href: '/movies',
       auth: false,
     },
     {

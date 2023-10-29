@@ -1,3 +1,5 @@
+// import useCurrent from '@/hooks/useCurrent';
+import useLoginModal from '@/hooks/useLoginModal';
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 
@@ -9,14 +11,17 @@ interface HeaderItemProps {
 
 const HeaderItem: React.FC<HeaderItemProps> = ({ auth, href, label }) => {
   const router = useRouter();
+  const loginModal = useLoginModal();
+  // const { data: currentUser } = useCurrent();
 
   const handleClick = useCallback(() => {
     if (auth) {
-      return;
+      // if (auth && !currentUser) {
+      return loginModal.onOpen();
+    } else {
+      router.push(href);
     }
-
-    router.push(href);
-  }, [auth, href, router]);
+  }, [auth, href, loginModal, router]);
 
   return (
     <div

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { AiOutlineEye, AiFillEye, AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 interface SeriesItemProps {
@@ -9,12 +9,26 @@ interface SeriesItemProps {
 
 const SeriesItem: React.FC<SeriesItemProps> = ({ data }) => {
   const router = useRouter();
+  const [isHover, setIsHover] = useState(false);
+
   const handleClick = useCallback(() => {
     router.push(`/series/${data.id}`);
   }, [data.id, router]);
 
+  const handleLiked = useCallback((event: any) => {
+    event.stopPropagation();
+  }, []);
+
+  const handleWatched = useCallback((event: any) => {
+    event.stopPropagation();
+  }, []);
+
   return (
-    <div className="px-2 py-3 relative cursor-pointer hover:opacity-80" onClick={handleClick}>
+    <div
+      className="border-2 border-grey-300 relative cursor-pointer hover:opacity-80 hover:border-2 hover:border-green-500"
+      onClick={handleClick}
+      onMouseEnter={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}>
       <Image
         src={
           data.poster_path ? `https://image.tmdb.org/t/p/w500${data.poster_path}` : '/notfound.jpg'
@@ -23,14 +37,16 @@ const SeriesItem: React.FC<SeriesItemProps> = ({ data }) => {
         height={150}
         alt="image"
       />
-      <div className="absolute">
-        <div className="cursor-pointer">
-          <AiOutlineEye color="text-black" size={20} />
+      {isHover && (
+        <div className="absolute bottom-3 left-0 right-0 px-2 py-1 flex items-center justify-center gap-2 bg-neutral-600 opacity-80">
+          <div className="cursor-pointer hover:opacity-30" onClick={handleWatched}>
+            <AiOutlineEye color="white" size={20} />
+          </div>
+          <div className="cursor-pointer hover:opacity-30" onClick={handleLiked}>
+            <AiOutlineHeart color="white" size={20} />
+          </div>
         </div>
-        <div className="cursor-pointer">
-          <AiOutlineHeart color="text-black" size={20} />
-        </div>
-      </div>
+      )}
     </div>
   );
 };

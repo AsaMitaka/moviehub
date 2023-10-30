@@ -2,17 +2,18 @@ import SeriesItem from './seriesItem';
 
 interface SeriesContainerProps {
   data: Record<string, any>;
-  page: number;
 }
 
-const SeriesContainer: React.FC<SeriesContainerProps> = ({ data, page }) => {
+const SeriesContainer: React.FC<SeriesContainerProps> = ({ data }) => {
   return (
-    <div className="grid grid-cols-5 grid-rows-5 gap-4">
-      {data &&
-        data.map((data: Record<string, any>, index: number) => (
-          <SeriesItem key={index} data={data} />
-        ))}
-    </div>
+    <>
+      <div className="mb-4 grid grid-cols-10 grid-rows-2 gap-4">
+        {data &&
+          data.map((data: Record<string, any>, index: number) => (
+            <SeriesItem key={index} data={data} />
+          ))}
+      </div>
+    </>
   );
 };
 

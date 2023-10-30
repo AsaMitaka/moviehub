@@ -1,9 +1,11 @@
 import fetcher from '@/libs/fetcher';
 import useSWR from 'swr';
 
-const useSeries = () => {
+const useSeries = (page: number) => {
+  const pages = `&page=${page}`;
+
   const { data, error, isLoading, mutate } = useSWR(
-    `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.NEXT_PUBLIC_APIKEY}`,
+    `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.NEXT_PUBLIC_APIKEY}${pages}`,
     fetcher,
   );
 

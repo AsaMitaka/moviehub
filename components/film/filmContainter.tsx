@@ -2,12 +2,11 @@ import FilmItem from './filmItem';
 
 interface FilmContainerProps {
   data: Record<string, any>;
-  page: number;
 }
 
-const FilmContainer: React.FC<FilmContainerProps> = ({ data, page }) => {
+const FilmContainer: React.FC<FilmContainerProps> = ({ data }) => {
   return (
-    <div className="grid grid-cols-5 grid-rows-5 gap-4">
+    <div className="mb-4 grid grid-cols-10 grid-rows-2 gap-4">
       {data &&
         data.map((data: Record<string, any>, index: number) => (
           <FilmItem data={data} key={index} />

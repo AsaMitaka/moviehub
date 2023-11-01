@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       throw new Error('Invalid userId');
     }
 
-    const user = await prisma.user.findOne({
+    const user = await prisma.user.findUnique({
       where: {
         id: userId,
       },

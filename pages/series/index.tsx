@@ -18,7 +18,7 @@ const Series = () => {
   }
 
   return (
-    <div className="px-2 py-3">
+    <div className="px-2 py-3 mx-auto">
       <SeriesContainer data={fetchedData.results} />
       <ContainerButton page={page} setPage={setPage} />
     </div>

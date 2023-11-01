@@ -14,18 +14,21 @@ model User {
   password String
   profileImage String?
   favoriteMovies String[] @db.ObjectId
+  favoriteSeries String[] @db.ObjectId
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  movieScores Movie[]
-  seriesScore Series[]
+  movies Movie[]
+  series Series[]
 }
 
 model Movie {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   movieId String
-  score String
   isFavorite Boolean?
+  isWatch Boolean?
+  review String?
+  score String?
   userId String @db.ObjectId
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -34,8 +37,10 @@ model Movie {
 model Series {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   seriesId String
-  score String
   isFavorite Boolean?
+  isWatch Boolean?
+  review String?
+  score String
   userId String @db.ObjectId
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)

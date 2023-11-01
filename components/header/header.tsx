@@ -1,7 +1,10 @@
+import useCurrent from '@/hooks/useCurrent';
 import HeaderItem from './headerItem';
 import HeaderLogo from './headerLogo';
 
 const Header = () => {
+  const { data: currentUser } = useCurrent();
+
   const items = [
     {
       label: 'movies',
@@ -15,7 +18,7 @@ const Header = () => {
     },
     {
       label: 'profile',
-      href: '/user/1',
+      href: `/user/${currentUser?.id}`,
       auth: true,
     },
   ];

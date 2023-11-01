@@ -25,25 +25,29 @@ const SeriesItem: React.FC<SeriesItemProps> = ({ data }) => {
 
   return (
     <div
-      className="border-2 border-grey-300 relative cursor-pointer hover:opacity-80 hover:border-2 hover:border-green-500"
+      className="border-2 border-gray-600 relative cursor-pointer hover:opacity-80 hover:border-2 hover:border-green-500"
       onClick={handleClick}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}>
-      <Image
-        src={
-          data.poster_path ? `https://image.tmdb.org/t/p/w500${data.poster_path}` : '/notfound.jpg'
-        }
-        width={100}
-        height={150}
-        alt="image"
-      />
+      <div className="lg:h-[200px] lg:w-[150px]  md:h-[225px] md:w-[125px] h-[250px] w-[200px]">
+        <Image
+          src={
+            data.poster_path
+              ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
+              : '/notfound.jpg'
+          }
+          layout="fill"
+          alt="image"
+          style={{ objectFit: 'cover' }}
+        />
+      </div>
       {isHover && (
         <div className="absolute bottom-3 left-0 right-0 px-2 py-1 flex items-center justify-center gap-2 bg-neutral-600 opacity-80">
           <div className="cursor-pointer hover:opacity-30" onClick={handleWatched}>
-            <AiOutlineEye color="white" size={20} />
+            <AiOutlineEye color="white" size={24} />
           </div>
           <div className="cursor-pointer hover:opacity-30" onClick={handleLiked}>
-            <AiOutlineHeart color="white" size={20} />
+            <AiOutlineHeart color="white" size={24} />
           </div>
         </div>
       )}

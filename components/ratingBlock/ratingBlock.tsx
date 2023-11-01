@@ -15,7 +15,7 @@ interface RatingBlockProps {
 
 const RatingBlock: React.FC<RatingBlockProps> = ({ isLiked, isWatched, rating }) => {
   return (
-    <div className="flex flex-col w-[250px] rounded-md gap-2 bg-neutral-500">
+    <div className="block md:flex md:flex-col rounded-md gap-2 bg-neutral-500">
       <div className="flex flex-row items-center justify-around px-3 py-2 ">
         <div className="flex flex-col items-center  cursor-pointer hover:opacity-30">
           <AiOutlineEye color="white" size={28} />

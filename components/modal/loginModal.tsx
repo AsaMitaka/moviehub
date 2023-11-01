@@ -59,8 +59,8 @@ const LoginModal = () => {
     try {
       setIsLoading(true);
 
-      toast.success('Success signup');
       signIn('credentials', { email, password });
+      toast.success('Success signup');
       loginModal.onClose();
     } catch (error) {
       console.warn(error);

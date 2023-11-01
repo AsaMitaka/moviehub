@@ -67,10 +67,10 @@ const SignupModal = () => {
   const handleSubmit = useCallback(async () => {
     try {
       setIsLoading(true);
-      //   await axios.post('/api/signup', { email, username, password });
+      await axios.post('/api/signup', { email, username, password });
 
-      toast.success('Success signup');
       signIn('credentials', { email, password });
+      toast.success('Success signup');
       signUpModal.onClose();
     } catch (error) {
       console.warn(error);

@@ -10,6 +10,7 @@ const User = () => {
   const { userId } = router.query;
 
   const { data: fetchedUser, isLoading } = useUser(userId as string);
+  console.log(fetchedUser);
 
   if (isLoading) {
     return (
@@ -20,7 +21,7 @@ const User = () => {
   }
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className="w-full">
       <UserData data={fetchedUser} />
       <FilmContainer data={fetchedUser.film} />
       <SeriesContainer data={fetchedUser.series} />
